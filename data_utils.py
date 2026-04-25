@@ -162,7 +162,7 @@ def specify(table: dict[str, list[str]], column: str, values: list[str]) -> dict
     return result
 
 def specify_not(table: dict[str, list[str]], column: str, values: list[str]) -> dict[str, list[str]]: 
-    """Filters a table based on a column and some specific given values."""
+    """Filters a table based on a column and not given values."""
     result: dict[str, list[str]] = {}
 
     for key in table:
@@ -173,4 +173,18 @@ def specify_not(table: dict[str, list[str]], column: str, values: list[str]) -> 
             for key in table:
                 result[key].append(table[key][i])
     
+    return result
+
+def specify_int(table: dict[str, list[int]], column: str, values: list[int]) -> dict[str, list[int]]:
+    """Filters a table based on a column and some specific given values."""
+    result: dict[str, list[int]] = {}
+
+    for key in table:
+        result[key] = []
+
+    for i in range(len(table[column])):
+        if table[column][i] in values:
+            for key in table:
+                result[key].append(table[key][i])
+
     return result
